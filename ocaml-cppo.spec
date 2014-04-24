@@ -5,14 +5,12 @@
 
 Name:           ocaml-cppo
 Version:        0.9.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
 URL:            http://mjambon.com/cppo.html
 Source0:        http://mjambon.com/releases/cppo/cppo-%{version}.tar.gz
-
-ExclusiveArch:  %{ocaml_arches}
 
 BuildRequires:  ocaml >= 3.10.0
 BuildRequires:  ocaml-findlib
@@ -67,6 +65,9 @@ make test
 
 
 %changelog
+* Thu Apr 24 2014 Jaromir Capik <jcapik@redhat.com> - 0.9.3-3
+- Removing ExclusiveArch
+
 * Mon Jan 27 2014 Michel Salim <salimma@fedoraproject.org> - 0.9.3-2
 - Incorporate review feedback
 
