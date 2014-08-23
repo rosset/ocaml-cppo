@@ -5,7 +5,7 @@
 
 Name:           ocaml-cppo
 Version:        0.9.3
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -65,6 +65,9 @@ make test
 
 
 %changelog
+* Sat Aug 23 2014 Richard W.M. Jones <rjones@redhat.com> - 0.9.3-8
+- ocaml-4.02.0+rc1 rebuild.
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.9.3-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
