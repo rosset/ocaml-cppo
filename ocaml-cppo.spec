@@ -5,7 +5,7 @@
 
 Name:           ocaml-cppo
 Version:        0.9.3
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -65,6 +65,9 @@ make test
 
 
 %changelog
+* Sat Aug 30 2014 Richard W.M. Jones <rjones@redhat.com> - 0.9.3-9
+- ocaml-4.02.0 final rebuild.
+
 * Sat Aug 23 2014 Richard W.M. Jones <rjones@redhat.com> - 0.9.3-8
 - ocaml-4.02.0+rc1 rebuild.
 
