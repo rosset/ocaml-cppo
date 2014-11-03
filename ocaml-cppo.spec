@@ -4,8 +4,8 @@
 %endif
 
 Name:           ocaml-cppo
-Version:        0.9.3
-Release:        3%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -60,11 +60,14 @@ make test
 
 
 %files
-%doc LICENSE README Changes
+%doc LICENSE README.md Changes
 %{_bindir}/cppo
 
 
 %changelog
+* Mon Nov  3 2014 Michel Salim <salimma@fedoraproject.org> - 1.0.1-1
+- Update to 1.0.1
+
 * Thu Apr 24 2014 Jaromir Capik <jcapik@redhat.com> - 0.9.3-3
 - Removing ExclusiveArch
 
