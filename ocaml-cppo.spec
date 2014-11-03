@@ -65,7 +65,7 @@ make test
 
 
 %changelog
-* Mon Nov  3 2014 Michel Salim <salimma@fedoraproject.org> - 1.0.1-1
+* Mon Nov  3 2014 Michel Alexandre Salim <salimma@fedoraproject.org> - 1.0.1-1
 - Update to 1.0.1
 
 * Sat Aug 30 2014 Richard W.M. Jones <rjones@redhat.com> - 0.9.3-9
