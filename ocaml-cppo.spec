@@ -5,7 +5,7 @@
 
 Name:           ocaml-cppo
 Version:        1.1.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -16,6 +16,9 @@ BuildRequires:  ocaml >= 3.10.0
 BuildRequires:  ocaml-findlib
 %if !%{opt}
 Requires:       ocaml >= 3.10.0
+%endif
+%if 0?%{epel}
+BuildExclude:   ppc64
 %endif
 
 %define libname %(sed -e 's/^ocaml-//' <<< %{name})
@@ -65,6 +68,9 @@ make test
 
 
 %changelog
+* Thu Sep 24 2015 Ding-Yi Chen <dchen@redhat.com> - 1.1.2-3
+- Exclude ppc64 for EPEL, as ocaml-findlib is not available on it.
+
 * Tue Jul 28 2015 Richard W.M. Jones <rjones@redhat.com> - 1.1.2-2
 - OCaml 4.02.3 rebuild.
 
