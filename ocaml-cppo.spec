@@ -17,8 +17,9 @@ BuildRequires:  ocaml-findlib
 %if !%{opt}
 Requires:       ocaml >= 3.10.0
 %endif
-%if 0?%{epel}
-BuildExclude:   ppc64
+
+%if 0%{?epel}
+ExcludeArch:   ppc64
 %endif
 
 %define libname %(sed -e 's/^ocaml-//' <<< %{name})
