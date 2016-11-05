@@ -4,13 +4,13 @@
 %endif
 
 Name:           ocaml-cppo
-Version:        1.1.2
-Release:        3%{?dist}
+Version:        1.4.0
+Release:        1%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
 URL:            http://mjambon.com/cppo.html
-Source0:        http://mjambon.com/releases/cppo/cppo-%{version}.tar.gz
+Source0:        https://github.com/mjambon/cppo/archive/v%{version}.tar.gz
 
 BuildRequires:  ocaml >= 3.10.0
 BuildRequires:  ocaml-findlib
@@ -65,6 +65,10 @@ make test
 
 
 %changelog
+* Sat Nov 05 2016 Richard W.M. Jones <rjones@redhat.com> - 1.4.0-1
+- New upstream version 1.4.0.
+- Fix download source URL.
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
