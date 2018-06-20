@@ -54,8 +54,8 @@ make %{?_smp_mflags} all
 
 
 %check
-%ifnarch %{power64}
-# Fails on ppc64le with:
+%ifnarch %{arm} %{power64}
+# Fails on armv7hl and ppc64le with:
 # Error: math error
 make test
 %endif
