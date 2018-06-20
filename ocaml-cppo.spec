@@ -17,6 +17,7 @@ BuildRequires:  ocaml-findlib
 %if !%{opt}
 Requires:       ocaml >= 3.10.0
 %endif
+BuildRequires:  ocaml-ocamlbuild-devel
 BuildRequires:  jbuilder
 
 %define libname %(sed -e 's/^ocaml-//' <<< %{name})
