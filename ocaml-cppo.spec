@@ -4,8 +4,8 @@
 %endif
 
 Name:           ocaml-cppo
-Version:        1.5.0
-Release:        8%{?dist}
+Version:        1.6.4
+Release:        1%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -17,6 +17,7 @@ BuildRequires:  ocaml-findlib
 %if !%{opt}
 Requires:       ocaml >= 3.10.0
 %endif
+BuildRequires:  jbuilder
 
 %define libname %(sed -e 's/^ocaml-//' <<< %{name})
 
@@ -43,16 +44,12 @@ sed -i.add-debuginfo \
 
 
 %build
-%if %opt
-make %{?_smp_mflags} opt
-%else
 make %{?_smp_mflags} all
-%endif
 
 
 %install
 %{__install} -d $RPM_BUILD_ROOT%{_bindir}
-%{__install} -p cppo $RPM_BUILD_ROOT%{_bindir}/
+%{__install} -p _build/install/default/bin/cppo $RPM_BUILD_ROOT%{_bindir}/
 
 
 %check
@@ -60,11 +57,15 @@ make test
 
 
 %files
-%doc LICENSE README.md Changes
+%license LICENSE.md
+%doc Changes README.md
 %{_bindir}/cppo
 
 
 %changelog
+* Wed Jun 20 2018 Richard W.M. Jones <rjones@redhat.com> - 1.6.4-1
+- New upstream version 1.6.4.
+
 * Tue Jun 19 2018 Richard W.M. Jones <rjones@redhat.com> - 1.5.0-8
 - OCaml 4.07.0-rc1 rebuild.
 
