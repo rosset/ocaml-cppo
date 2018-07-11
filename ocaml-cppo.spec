@@ -5,7 +5,7 @@
 
 Name:           ocaml-cppo
 Version:        1.6.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -68,6 +68,9 @@ make test
 
 
 %changelog
+* Wed Jul 11 2018 Richard W.M. Jones <rjones@redhat.com> - 1.6.4-2
+- OCaml 4.07.0 (final) rebuild.
+
 * Wed Jun 20 2018 Richard W.M. Jones <rjones@redhat.com> - 1.6.4-1
 - New upstream version 1.6.4.
 
