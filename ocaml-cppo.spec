@@ -3,9 +3,11 @@
 %global debug_package %{nil}
 %endif
 
+%define libname cppo_ocamlbuild
+
 Name:           ocaml-cppo
-Version:        1.6.4
-Release:        3%{?dist}
+Version:        1.6.5
+Release:        1%{?dist}
 Summary:        Equivalent of the C preprocessor for OCaml programs
 
 License:        BSD
@@ -20,7 +22,7 @@ Requires:       ocaml >= 3.10.0
 BuildRequires:  ocaml-ocamlbuild-devel
 BuildRequires:  jbuilder
 
-%define libname %(sed -e 's/^ocaml-//' <<< %{name})
+%define sname %(sed -e 's/^ocaml-//' <<< %{name})
 
 %description
 Cppo is an equivalent of the C preprocessor targeted at the OCaml
@@ -36,9 +38,23 @@ The implementation of cppo relies on the standard library of OCaml and
 on the standard parsing tools Ocamllex and Ocamlyacc, which contribute
 to the robustness of cppo across OCaml versions.
 
+%package -n ocaml-%libname
+Summary: ocamlbuild support for cppo, OCaml-friendly source preprocessor
+Group: Development/ML
+%description -n ocaml-%libname
+ocamlbuild support for cppo, OCaml-friendly source preprocessor
+
+%package -n ocaml-%libname-devel
+Summary: Development files for %name-ocamlbuild
+Group: Development/ML
+Requires: ocaml-%libname = %{version}
+%description -n ocaml-%libname-devel
+The %name-ocamlbuild-devel package contains libraries and signature files for
+developing applications that use %name-ocamlbuild.
+
 
 %prep
-%setup -q -n %{libname}-%{version}
+%setup -q -n %{sname}-%{version}
 sed -i.add-debuginfo \
     's/ocamlopt/ocamlopt -g/;s/ocamlc \(-[co]\)/ocamlc -g \1/' \
     Makefile
@@ -50,8 +66,9 @@ make %{?_smp_mflags} all
 
 %install
 %{__install} -d $RPM_BUILD_ROOT%{_bindir}
+%{__install} -d $RPM_BUILD_ROOT%{_libdir}/ocaml/%libname
 %{__install} -p _build/install/default/bin/cppo $RPM_BUILD_ROOT%{_bindir}/
-
+%{__install} -p _build/install/default/lib/cppo_ocamlbuild/* $RPM_BUILD_ROOT%{_libdir}/ocaml/%libname/
 
 %check
 %ifnarch %{arm} %{power64}
@@ -65,9 +82,33 @@ make test
 %license LICENSE.md
 %doc Changes README.md
 %{_bindir}/cppo
+#%_libdir/ocaml/cppo/META
+#%_libdir/ocaml/cppo/opam
+
+%files -n ocaml-%libname
+%dir %_libdir/ocaml/%libname
+#%dir %_libdir/ocaml/cppo
+%_libdir/ocaml/%libname/META
+%_libdir/ocaml/%libname/*.cmi
+%_libdir/ocaml/%libname/*.cma
+%_libdir/ocaml/%libname/*.a
+%_libdir/ocaml/%libname/*.cmxa
+%_libdir/ocaml/%libname/*.cmxs
+
+%files -n ocaml-%libname-devel
+%_libdir/ocaml/%libname/opam
+%_libdir/ocaml/%libname/*.dune
+%_libdir/ocaml/%libname/*.cmx
+%_libdir/ocaml/%libname/*.cmt*
+%_libdir/ocaml/%libname/*.mli
+%_libdir/ocaml/%libname/*.ml
 
 
 %changelog
+* Thu Dec 20 2018 Filipe Rosset <rosset.filipe@gmail.com> - 1.6.5-1
+- new upstream version 1.6.5
+- starting from cppo >= 1.6.0, the cppo_ocamlbuild plugin is built as a lib
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.6.4-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
